@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buildwell Infradevelopers Pvt. Ltd - Premier Real Estate Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4ecdc4;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            background: #fff;
+            position: relative;
+            z-index: 1;
+            margin-top: -50px;
+            border-radius: 50px 50px 0 0;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .about h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .projects-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.2)"/><circle cx="80" cy="80" r="8" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .project-location {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-description {
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-ongoing {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-upcoming {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-delivered {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+            color: #4ecdc4;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .projects-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Buildwell Infradevelopers</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Building Dreams, Creating Futures</h1>
+            <p>Premium real estate development with innovative design and exceptional quality</p>
+            <a href="#projects" class="cta-button">Explore Projects</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- About Section -->
+            <section class="about" id="about">
+                <h2>About Buildwell Infradevelopers</h2>
+                <p>With over two decades of excellence in real estate development, Buildwell Infradevelopers Pvt. Ltd stands as a beacon of innovation and quality in the construction industry. We specialize in creating residential and commercial spaces that blend modern architecture with sustainable living solutions, delivering projects that exceed expectations and create lasting value for our clients.</p>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects-section" id="projects">
+                <h2 class="section-title">Our Projects</h2>
+                
+                <div class="projects-tabs">
+                    <button class="tab-button active" data-tab="ongoing">Ongoing Projects</button>
+                    <button class="tab-button" data-tab="upcoming">Upcoming Projects</button>
+                    <button class="tab-button" data-tab="delivered">Delivered Projects</button>
+                </div>
+
+                <!-- Ongoing Projects -->
+                <div class="tab-content active" id="ongoing">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Skyline Residences</h3>
+                                <p class="project-location">📍 Sector 45, Gurgaon</p>
+                                <p class="project-description">Luxury 3 & 4 BHK apartments with world-class amenities including swimming pool, gym, and landscaped gardens. Expected completion: December 2025.</p>
+                                <span class="project-status status-ongoing">Ongoing</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Tech Park Plaza</h3>
+                                <p class="project-location">📍 Cyber City, Noida</p>
+                                <p class="project-description">State-of-the-art commercial complex with modern office spaces, retail outlets, and food courts. Perfect for businesses and startups.</p>
+                                <span class="project-status status-ongoing">Ongoing</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Green Valley Homes</h3>
+                                <p class="project-location">📍 Sohna Road, Gurgaon</p>
+                                <p class="project-description">Eco-friendly residential project featuring solar panels, rainwater harvesting, and organic gardens. 2 & 3 BHK apartments available.</p>
+                                <span class="project-status status-ongoing">Ongoing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Projects -->
+                <div class="tab-content" id="upcoming">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Metropolitan Heights</h3>
+                                <p class="project-location">📍 Golf Course Road, Gurgaon</p>
+                                <p class="project-description">Ultra-luxury penthouses and apartments with panoramic city views. Features include private elevators, sky gardens, and concierge services.</p>
+                                <span class="project-status status-upcoming">Upcoming</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Innovation Hub</h3>
+                                <p class="project-location">📍 Greater Noida West</p>
+                                <p class="project-description">Mixed-use development combining commercial spaces, co-working areas, and retail. Designed for the future of work and business.</p>
+                                <span class="project-status status-upcoming">Upcoming</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Riverside Villas</h3>
+                                <p class="project-location">📍 Yamuna Expressway</p>
+                                <p class="project-description">Exclusive villa community with private gardens, clubhouse, and water features. Perfect for families seeking luxury and tranquility.</p>
+                                <span class="project-status status-upcoming">Upcoming</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivered Projects -->
+                <div class="tab-content" id="delivered">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Heritage Square</h3>
+                                <p class="project-location">📍 Connaught Place, Delhi</p>
+                                <p class="project-description">Premium commercial complex with retail spaces and offices. Successfully delivered in 2023 with 100% occupancy rate.</p>
+                                <span class="project-status status-delivered">Delivered</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Sunset Gardens</h3>
+                                <p class="project-location">📍 Dwarka, Delhi</p>
+                                <p class="project-description">Family-friendly residential complex with 500+ happy families. Features include parks, schools, and shopping centers within the community.</p>
+                                <span class="project-status status-delivered">Delivered</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-image"></div>
+                            <div class="project-content">
+                                <h3 class="project-title">Business Bay</h3>
+                                <p class="project-location">📍 Sector 18, Noida</p>
+                                <p class="project-description">Corporate headquarters and office spaces for leading companies. Delivered ahead of schedule with LEED Gold certification.</p>
+                                <span class="project-status status-delivered">Delivered</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>Ready to find your dream property? Contact us today!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📞 Phone</h3>
+                    <p>+91 9876543210<br>+91 9876543211</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>info@buildwellinfra.com<br>sales@buildwellinfra.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📍 Office</h3>
+                    <p>123 Business Hub<br>Sector 44, Gurgaon, Haryana</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🕒 Hours</h3>
+                    <p>Mon - Sat: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Buildwell Infradevelopers Pvt. Ltd. All rights reserved. | Building Excellence Since 2003</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                // Animate project cards
+                const projectCards = document.querySelectorAll(`#${targetTab} .project-card`);
+                projectCards.forEach((card, index) => {
+                    card.style.animation = 'none';
+                    card.offsetHeight; // Trigger reflow
+                    card.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
+                });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+
+        // Initialize project cards animation
+        window.addEventListener('load', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
