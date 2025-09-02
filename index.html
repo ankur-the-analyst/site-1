@@ -1,240 +1,819 @@
-import React, { useState, useEffect } from 'react';
-import LottiePlayer from 'https://unpkg.com/@lottiefiles/react-lottie-player@latest/dist/react-lottie-player.js';
-
-// The main App component for the portfolio website.
-const App = () => {
-  const [loading, setLoading] = useState(true);
-
-  // Simulating a brief loading time for the Lottie animation for a smoother user experience
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Professional color palette and design elements.
-  const primaryColor = 'bg-slate-900';
-  const accentColor = 'bg-blue-600';
-  const cardColor = 'bg-slate-800/70';
-  const textColor = 'text-white';
-  const accentTextColor = 'text-blue-400';
-
-  const skills = {
-    technical: [
-      { category: 'CRM & Analytics', tools: ['Salesforce', 'Power BI', 'Tableau'] },
-      { category: 'Project Management', tools: ['Azure DevOps', 'JIRA', 'Confluence'] },
-      { category: 'Data & Analytics', tools: ['SQL', 'Alteryx', 'Data Visualization'] },
-      { category: 'Productivity Suites', tools: ['Microsoft 365', 'Google Workspace'] },
-    ],
-    business: [
-      { skill: 'Customer Success', capabilities: 'Client Relationship Management' },
-      { skill: 'Business Intelligence', capabilities: 'Reports & Dashboards' },
-      { skill: 'Documentation', capabilities: 'BRD, FRD, SRS, Wireframing' },
-      { skill: 'Process Management', capabilities: 'Scrum, Optimization, Quality' },
-      { skill: 'SaaS Strategy', capabilities: 'Product Training, Integrations' },
-    ],
-  };
-
-  const journey = [
-    { title: 'Assistant Professor - Data Analytics', company: 'GLBIMR', description: 'Leading academic initiatives in data analytics education and research.' },
-    { title: 'Software Project Manager', company: 'E-Solutions International', description: 'Managed end-to-end software project delivery and team coordination.' },
-    { title: 'Business Analyst Trainee', company: 'PcsInfinity', description: 'Developed foundational skills in business analysis and requirements gathering.' },
-    { title: 'Consultant', company: '360 Degree Cloud', description: 'Provided strategic consulting on cloud solutions and digital transformation.' },
-    { title: 'Junior Business Analyst', company: 'Antahin Abha', description: 'Analyzed business requirements and supported process improvement initiatives.' },
-    { title: 'Data Analyst Intern', company: 'GrowthPal', description: 'Performed data analysis and created insights to support business growth strategies.' },
-  ];
-
-  const contributions = [
-    { title: 'Client-Centric Solutions', icon: '🎯' },
-    { title: 'Project Coordination', icon: '📋' },
-    { title: 'Data Insights & BI', icon: '📊' },
-    { title: 'Scrum Management', icon: '🏃‍♂️' },
-    { title: 'Documentation', icon: '📝' },
-    { title: 'Process Optimization', icon: '⚙️' },
-  ];
-
-  return (
-    <div className={`min-h-screen ${primaryColor} font-sans ${textColor} relative overflow-hidden`}>
-      {/* Animated gradient background */}
-      <style>
-        {`
-        @keyframes gradient-animation {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Contribution to CoPact - Pitch Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
         }
-        .animated-gradient {
-          background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #0f172a, #6366f1);
-          background-size: 400% 400%;
-          animation: gradient-animation 15s ease infinite;
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
         }
-        .custom-shadow {
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        `}
-      </style>
-      <div className="animated-gradient absolute inset-0 -z-10 opacity-60"></div>
-
-      {/* Main content container with a semi-transparent overlay */}
-      <div className="p-4 md:p-8 lg:p-12 relative z-10">
-        <div className={`${cardColor} backdrop-blur-sm p-6 md:p-10 lg:p-14 rounded-3xl custom-shadow`}>
-
-          {/* Hero Section */}
-          <header id="home" className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 mb-16">
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Ankur Madan</h1>
-              <h2 className={`text-2xl font-semibold mb-4 ${accentTextColor}`}>Software Project Manager</h2>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto md:mx-0">
-                A results-driven professional with a strong blend of technical expertise and business acumen,
-                dedicated to delivering client-centric solutions and optimizing processes.
-              </p>
-              <div className="mt-6 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                <a href="mailto:ankur.madan@syncnovate.com" className={`${accentColor} hover:bg-blue-700 transition-colors py-2 px-6 rounded-full font-semibold`}>
-                  Contact Me
-                </a>
-                <a href="#" className={`border border-blue-600 ${textColor} hover:bg-blue-600 transition-colors py-2 px-6 rounded-full font-semibold`}>
-                  Download Resume
-                </a>
-              </div>
-            </div>
-            {/* Lottie Animation for the hero section */}
-            <div className="w-full md:w-1/2 lg:w-1/3 flex justify-center">
-              {loading ? (
-                <div className="w-64 h-64 bg-slate-700 rounded-xl animate-pulse flex items-center justify-center">
-                  <span className="text-sm text-slate-400">Loading Animation...</span>
-                </div>
-              ) : (
-                <LottiePlayer
-                  src="https://lottie.host/e2f6764d-587b-410a-8d19-4a928e08d6d6/Rk8zU451T2.json"
-                  className="w-full h-full max-w-[400px]"
-                  loop
-                  autoplay
-                  speed={1}
-                />
-              )}
-            </div>
-          </header>
-
-          {/* Contact Details Section */}
-          <section id="contact-info" className="mb-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-              <div className={`${cardColor} p-6 rounded-2xl flex flex-col items-center custom-shadow`}>
-                <span className="text-3xl mb-2">📧</span>
-                <p className="font-semibold">Email</p>
-                <a href="mailto:ankur.madan@syncnovate.com" className={`${accentTextColor} hover:underline`}>ankur.madan@syncnovate.com</a>
-              </div>
-              <div className={`${cardColor} p-6 rounded-2xl flex flex-col items-center custom-shadow`}>
-                <span className="text-3xl mb-2">🔗</span>
-                <p className="font-semibold">LinkedIn</p>
-                <a href="www.linkedin.com/in/ankur-madan" target="_blank" rel="noopener noreferrer" className={`${accentTextColor} hover:underline`}>linkedin.com/in/ankur-madan</a>
-              </div>
-              <div className={`${cardColor} p-6 rounded-2xl flex flex-col items-center custom-shadow`}>
-                <span className="text-3xl mb-2">📞</span>
-                <p className="font-semibold">Phone</p>
-                <span className={`${accentTextColor}`}>+91-9711445542</span>
-              </div>
-            </div>
-          </section>
-
-          {/* Skills Section */}
-          <section id="skills" className="mb-16">
-            <h3 className="text-3xl font-semibold mb-8 text-center">Core Skills & Competencies</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Technical Skills */}
-              <div className={`${cardColor} p-6 rounded-2xl custom-shadow`}>
-                <h4 className="text-2xl font-semibold mb-4 flex items-center">
-                  <span className="text-3xl mr-3">🛠️</span> Technical Proficiencies
-                </h4>
-                <div className="space-y-4">
-                  {skills.technical.map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <span className="font-medium min-w-[120px] md:min-w-[150px] text-blue-300">{item.category}:</span>
-                      <p className="flex-1">{item.tools.join(', ')}</p>
+        
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            to { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                        <i data-lucide="rocket" class="w-6 h-6 text-white"></i>
                     </div>
-                  ))}
+                    <span class="text-xl font-bold gradient-text">
+                        Strategic CoPact Contribution
+                    </span>
                 </div>
-              </div>
-
-              {/* Business & Soft Skills */}
-              <div className={`${cardColor} p-6 rounded-2xl custom-shadow`}>
-                <h4 className="text-2xl font-semibold mb-4 flex items-center">
-                  <span className="text-3xl mr-3">💼</span> Business & Soft Skills
-                </h4>
-                <div className="space-y-4">
-                  {skills.business.map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <span className="font-medium min-w-[120px] md:min-w-[150px] text-blue-300">{item.skill}:</span>
-                      <p className="flex-1">{item.capabilities}</p>
-                    </div>
-                  ))}
+                <div class="hidden md:flex space-x-8">
+                    <a href="#value" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Value</a>
+                    <a href="#process" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Process</a>
+                    <a href="#delivery" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Delivery</a>
+                    <a href="#fit" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Strategic Fit</a>
                 </div>
-              </div>
             </div>
-          </section>
-
-          {/* Professional Journey Section */}
-          <section id="journey" className="mb-16">
-            <h3 className="text-3xl font-semibold mb-8 text-center">Professional Journey</h3>
-            <div className="relative space-y-12">
-              {/* Vertical timeline line */}
-              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-600 rounded-full transform -translate-x-1/2"></div>
-              {journey.map((item, index) => (
-                <div key={index} className="relative flex justify-center md:justify-between items-center w-full md:w-1/2 group">
-                  {/* Left side content */}
-                  {index % 2 === 0 ? (
-                    <>
-                      <div className="hidden md:block w-1/2"></div>
-                      <div className={`w-full md:w-1/2 ${cardColor} p-6 rounded-2xl custom-shadow relative md:text-left`}>
-                        <h4 className="text-xl font-semibold text-blue-300">{item.title}</h4>
-                        <p className="text-sm text-gray-400">{item.company}</p>
-                        <p className="mt-2 text-sm">{item.description}</p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className={`w-full md:w-1/2 ${cardColor} p-6 rounded-2xl custom-shadow relative md:text-right`}>
-                        <h4 className="text-xl font-semibold text-blue-300">{item.title}</h4>
-                        <p className="text-sm text-gray-400">{item.company}</p>
-                        <p className="mt-2 text-sm">{item.description}</p>
-                      </div>
-                      <div className="hidden md:block w-1/2"></div>
-                    </>
-                  )}
-                  {/* Timeline dot */}
-                  <div className="absolute top-1/2 md:left-1/2 transform -translate-y-1/2 md:-translate-x-1/2">
-                    <div className="w-5 h-5 bg-blue-600 rounded-full ring-4 ring-slate-800"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* How I Can Contribute Section */}
-          <section id="contributions" className="mb-16">
-            <h3 className="text-3xl font-semibold mb-8 text-center">How I Can Contribute</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {contributions.map((item, index) => (
-                <div key={index} className={`${cardColor} p-6 rounded-2xl text-center custom-shadow`}>
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h4 className="text-xl font-semibold">{item.title}</h4>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Footer with Call to Action */}
-          <footer className="text-center pt-8">
-            <h3 className="text-2xl font-semibold mb-4">Ready to Make an Impact</h3>
-            <p className="text-lg mb-6">Looking forward to an exploratory call for the same.</p>
-            <a href="#" className={`${accentColor} hover:bg-blue-700 transition-colors py-3 px-8 rounded-full font-bold`}>
-              Download Resume
-            </a>
-          </footer>
         </div>
-      </div>
-    </div>
-  );
-};
+    </nav>
 
-export default App;
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+        <div class="relative max-w-7xl mx-auto px-6 text-center">
+            <div class="fade-in">
+                <div class="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
+                    <i data-lucide="lightbulb" class="w-4 h-4 mr-2"></i>
+                    Strategic Partnership Proposal
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+                    Driving Measurable
+                    <span class="gradient-text block">
+                        Growth Through Analysis
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+                    Unified expertise in Business Analysis, AI Designing, Product Testing and Client Management 
+                    to deliver guaranteed outcomes	
+                </p>
+            </div>
+            
+            <div class="fade-in" style="animation-delay: 300ms;">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center pulse-glow">
+                        View My Impact
+                        <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <a href="#value" class="text-blue-600 hover:text-purple-600 font-semibold text-lg flex items-center transition-colors">
+                        Learn More
+                        <i data-lucide="chevron-down" class="ml-2 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-blue-400/20 rounded-full blur-xl floating-element"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl floating-element" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-16 h-16 bg-pink-400/20 rounded-full blur-xl floating-element" style="animation-delay: 0.5s;"></div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section id="value" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    My Value Proposition to CoPact
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    A unique blend of analytical expertise, AI implementation, and client success management 
+                    that translates directly into measurable business outcomes
+                </p>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="fade-in grid md:grid-cols-3 gap-8 mb-16" style="animation-delay: 200ms;">
+                <div class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 border border-gray-100">
+                    <div class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 mb-4">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gray-900 mb-2">
+                            <span class="counter gradient-text" data-target="20" data-prefix="+" data-suffix="%">+0%</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Customer Retention Boost</h3>
+                        <p class="text-gray-600 leading-relaxed">Proven track record of implementing data-driven strategies that significantly improve client retention rates</p>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 border border-gray-100">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 mb-4">
+                            <i data-lucide="trending-down" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gray-900 mb-2">
+                            <span class="counter gradient-text" data-target="20" data-prefix="-" data-suffix="%">-0%</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Delivery Time Reduction</h3>
+                        <p class="text-gray-600 leading-relaxed">Streamlined processes and automation that accelerate project delivery without compromising quality</p>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 border border-gray-100">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 mb-4">
+                            <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gray-900 mb-2">
+                            <span class="counter gradient-text" data-target="40" data-prefix="+" data-suffix="%">+0%</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Team Productivity Increase</h3>
+                        <p class="text-gray-600 leading-relaxed">Enhanced operational efficiency through intelligent automation and optimized workflows</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="fade-in bg-gradient-to-r from-gray-50 to-blue-50 rounded-3xl p-12" style="animation-delay: 400ms;">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Technical Expertise</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-yellow-400 to-orange-500">
+                                <i data-lucide="bar-chart-3" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Power BI</div>
+                                <div class="text-sm text-gray-500">Analytics</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500">
+                                <i data-lucide="database" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Tableau</div>
+                                <div class="text-sm text-gray-500">Visualization</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500">
+                                <i data-lucide="database" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">SQL</div>
+                                <div class="text-sm text-gray-500">Database</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600">
+                                <i data-lucide="users" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Salesforce</div>
+                                <div class="text-sm text-gray-500">CRM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500">
+                                <i data-lucide="settings" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Alteryx</div>
+                                <div class="text-sm text-gray-500">Data Prep</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-rose-500 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-red-500 to-rose-500">
+                                <i data-lucide="brain" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">AI Automation</div>
+                                <div class="text-sm text-gray-500">ML/AI</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-500 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-500">
+                                <i data-lucide="award" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">PMP</div>
+                                <div class="text-sm text-gray-500">Certification</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                        <div class="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-500 opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex items-center space-x-3">
+                            <div class="p-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500">
+                                <i data-lucide="target" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Lean Six Sigma</div>
+                                <div class="text-sm text-gray-500">Process</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Strengths -->
+            <div class="fade-in mt-16 grid md:grid-cols-2 gap-12 items-center" style="animation-delay: 600ms;">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Unified Role Strength</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                                <i data-lucide="bar-chart-3" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Business Analyst</h4>
+                                <p class="text-gray-600">Deep analytical skills to diagnose complex business challenges and identify optimization opportunities</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                                <i data-lucide="brain" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">AI Practitioner</h4>
+                                <p class="text-gray-600">Hands-on experience building intelligent systems that automate processes and drive insights</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+                                <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Client Manager</h4>
+                                <p class="text-gray-600">Proven ability to ensure client success through strategic relationship management and outcome delivery</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-4">Execution Excellence</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+                                <span>PMP & Lean Six Sigma certified</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+                                <span>Agile methodology expert</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+                                <span class="flex items-center">
+                                    <span class="counter font-bold mr-1" data-target="95" data-suffix="%">0%</span> 
+                                    project adherence rate
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABA Process Section -->
+    <section id="process" class="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Aligning With CoPact's ABA Process
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    My expertise perfectly complements CoPact's Focus → Deploy → Drive methodology, 
+                    creating a seamless integration for enhanced client outcomes
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- FOCUS -->
+                <div class="fade-in group relative" style="animation-delay: 200ms;">
+                    <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105 border border-gray-100 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 mr-4 shadow-lg">
+                                <i data-lucide="search" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">Step 1</div>
+                                <h3 class="text-2xl font-bold text-gray-900">FOCUS</h3>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">Identify critical opportunities using AI-driven analysis</p>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Use AI-based models to identify revenue and efficiency opportunities</span>
+                            </li>
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Build diagnostic dashboards & KPI frameworks</span>
+                            </li>
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Analyze sales velocity, NPS, and EBITDA margins</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DEPLOY -->
+                <div class="fade-in group relative" style="animation-delay: 400ms;">
+                    <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105 border border-gray-100 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 mr-4 shadow-lg">
+                                <i data-lucide="settings" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">Step 2</div>
+                                <h3 class="text-2xl font-bold text-gray-900">DEPLOY</h3>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">Ensure smooth execution through systematic implementation</p>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Map requirements into partner deliverables</span>
+                            </li>
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Strengthen CoPact's partner ecosystem</span>
+                            </li>
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Identify gaps, bottlenecks, and hidden patterns</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DRIVE -->
+                <div class="fade-in group relative" style="animation-delay: 600ms;">
+                    <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105 border border-gray-100 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 mr-4 shadow-lg">
+                                <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-gray-500 mb-1">Step 3</div>
+                                <h3 class="text-2xl font-bold text-gray-900">DRIVE</h3>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">Maintain continuous improvement and outcome tracking</p>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Real-time outcome tracking dashboards</span>
+                            </li>
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Monitor sales pipeline and margin impact</span>
+                            </li>
+                            <li class="flex items-start group">
+                                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 mt-2 mr-3 group-hover:scale-150 transition-transform duration-300"></div>
+                                <span class="text-gray-700 leading-relaxed">Continuously adapt strategies using predictive analytics</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in bg-white rounded-3xl p-12 shadow-2xl border border-gray-100" style="animation-delay: 800ms;">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Integrated Approach</h3>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto mb-8">
+                        By embedding analytics, AI, and client alignment into every project phase, 
+                        I ensure that CoPact's guaranteed impact model is not just promised, but systematically delivered and measured.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">Lower Execution Cost</span>
+                        <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-medium">Improved Speed</span>
+                        <span class="bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full font-medium">Ensured Scalability</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Delivery Section -->
+    <section id="delivery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Translating Strategy into Guaranteed Outcomes
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive solutions that deliver measurable impact across all critical business metrics
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="fade-in group bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-blue-100" style="animation-delay: 100ms;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Sales & Pipeline</h3>
+                    <p class="text-gray-600 mb-4">AI-driven forecasting and CRM optimization for improved pipeline visibility</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Predictive sales analytics</li>
+                        <li>• Pipeline optimization</li>
+                        <li>• Revenue forecasting</li>
+                    </ul>
+                </div>
+
+                <div class="fade-in group bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-emerald-100" style="animation-delay: 200ms;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="dollar-sign" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Profitability</h3>
+                    <p class="text-gray-600 mb-4">Systems to monitor and lift EBITDA margins through automation</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Margin optimization</li>
+                        <li>• Process automation</li>
+                        <li>• Cost reduction analysis</li>
+                    </ul>
+                </div>
+
+                <div class="fade-in group bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-purple-100" style="animation-delay: 300ms;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="user-check" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Customer Retention</h3>
+                    <p class="text-gray-600 mb-4">Churn prediction dashboards and engagement insights</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Churn prediction models</li>
+                        <li>• Engagement tracking</li>
+                        <li>• Retention strategies</li>
+                    </ul>
+                </div>
+
+                <div class="fade-in group bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-amber-100" style="animation-delay: 400ms;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="star" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">NPS & Experience</h3>
+                    <p class="text-gray-600 mb-4">Feedback analysis loops to continuously raise Net Promoter Scores</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• NPS optimization</li>
+                        <li>• Feedback analysis</li>
+                        <li>• Experience improvement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fade-in bg-gradient-to-r from-gray-900 to-blue-900 rounded-3xl p-12 text-white" style="animation-delay: 600ms;">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-6">Outcome Operating System</h3>
+                        <p class="text-lg mb-8 text-gray-300">
+                            A comprehensive impact tracking system that operationalizes CoPact's guaranteed impact model 
+                            through robust dashboards, reports, and KPIs.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+                                <span>Real-time dashboard monitoring</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+                                <span>Automated reporting systems</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+                                <span>KPI tracking and optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                            <h4 class="text-xl font-bold mb-4">Success Study Parallel</h4>
+                            <p class="text-gray-300 mb-4">
+                                Just like CoPact's embedded recruiters cut hiring costs by 70%+, I can embed analytics, 
+                                AI, and client alignment into projects.
+                            </p>
+                            <div class="bg-green-400/20 text-green-400 px-4 py-2 rounded-lg text-center font-bold">
+                                70%+ Cost Reduction Achieved
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Fit Section -->
+    <section id="fit" class="py-20 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="fade-in text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    Why I Am the Right Fit for CoPact's Growth Story
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A strategic partnership built on aligned DNA, scalable impact, and unwavering commitment to outcomes
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
+                <div class="fade-in" style="animation-delay: 200ms;">
+                    <h3 class="text-3xl font-bold mb-8 flex items-center">
+                        <i data-lucide="shield" class="w-8 h-8 mr-3 text-blue-400"></i>
+                        Aligned DNA
+                    </h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        My career mirrors CoPact's ABA approach — a natural alignment that ensures seamless integration 
+                        and accelerated value delivery.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center">
+                                <span class="text-blue-900 font-bold text-sm">A</span>
+                            </div>
+                            <span>Assess challenges with data-driven precision</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center">
+                                <span class="text-purple-900 font-bold text-sm">B</span>
+                            </div>
+                            <span>Build scalable, intelligent solutions</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-pink-400 rounded-full flex items-center justify-center">
+                                <span class="text-pink-900 font-bold text-sm">A</span>
+                            </div>
+                            <span>Adapt strategies through continuous optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 400ms;">
+                    <h3 class="text-3xl font-bold mb-8 flex items-center">
+                        <i data-lucide="globe" class="w-8 h-8 mr-3 text-emerald-400"></i>
+                        Scalable Impact
+                    </h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Design systems once, replicate across multiple clients — multiplying impact 
+                        while maintaining quality and consistency.
+                    </p>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-emerald-400">1x</div>
+                                <div class="text-sm text-gray-300">Design</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-emerald-400">Nx</div>
+                                <div class="text-sm text-gray-300">Impact</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20" style="animation-delay: 600ms;">
+                <h3 class="text-3xl font-bold mb-8 text-center">Confidence in Outcomes</h3>
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="font-bold text-lg">Sales Growth</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="target" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="font-bold text-lg">Stronger Pipeline</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="dollar-sign" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="font-bold text-lg">Higher Margins</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-amber-400 to-orange-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="user-check" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="font-bold text-lg">Better Retention</div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-lg text-gray-300 mb-8 max-w-4xl mx-auto">
+                        My commitment extends beyond delivering solutions to building robust systems of accountability 
+                        and outcome tracking that make every partnership measurable and successful.
+                    </p>
+                    <button class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-12 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center mx-auto">
+                        Let's Build This Partnership
+                        <i data-lucide="arrow-right" class="ml-3 w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg flex items-center justify-center">
+                    <i data-lucide="rocket" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold">Strategic CoPact Partnership</span>
+            </div>
+            <p class="text-gray-400 mb-8">
+                Ready to drive measurable growth through data, AI, and strategic client partnerships
+            </p>
+            <div class="flex justify-center space-x-8 text-sm text-gray-500">
+                <span>Business Analysis</span>
+                <span>•</span>
+                <span>AI Implementation</span>
+                <span>•</span>
+                <span>Client Success</span>
+                <span>•</span>
+                <span>Outcome Tracking</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-lg', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-lg', 'shadow-lg');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.style.animationDelay || '0ms';
+                    const delayMs = parseInt(delay) || 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delayMs);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animated counter function
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.target);
+            const prefix = element.dataset.prefix || '';
+            const suffix = element.dataset.suffix || '';
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(progress * target);
+                
+                element.textContent = `${prefix}${current}${suffix}`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+
+        // Initialize counters when they become visible
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.counter').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Add hover effects for interactive elements
+        document.querySelectorAll('.group').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'scale(1.02)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
